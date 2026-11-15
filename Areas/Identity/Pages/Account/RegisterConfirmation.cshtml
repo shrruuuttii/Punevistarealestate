@@ -1,0 +1,31 @@
+@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>@ViewData["Title"]</h1>
+            @if (Model.DisplayConfirmAccountLink)
+            {
+                <p>
+                    This demo does not send a real email. Normally this would send an email message to <strong>@Model.Email</strong> with instructions to confirm your account. Please open your email account and confirm your email address.
+                </p>
+                if (!string.IsNullOrEmpty(Model.EmailConfirmationUrl))
+                {
+                    <p>
+                        Click <a href="@Model.EmailConfirmationUrl">here to confirm your account</a>
+                    </p>
+                }
+            }
+            else
+            {
+                <p>
+                    Please check your email (@Model.Email) to confirm your account.
+                </p>
+            }
+        </div>
+    </div>
+</div>

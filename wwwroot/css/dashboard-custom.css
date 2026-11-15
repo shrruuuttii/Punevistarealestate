@@ -1,0 +1,403 @@
+/* realestate-custom.css
+   Premium Real Estate Theme for PuneVistaRealestate
+   Modern, clean, and professional palette
+*/
+
+:root {
+    --primary-color: #2c5f9f;
+    --secondary-color: #d4a574;
+    --accent-color: #27ae60;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --text-dark: #2c3e50;
+    --text-muted: #7f8c8d;
+    --border-color: #ecf0f1;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --light-gold: #f9f6f0;
+}
+
+/* Page background: clean light gradient */
+body {
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar: Professional premium style */
+.navbar.bg-primary {
+    background: linear-gradient(90deg, var(--primary-color) 0%, #1e4573 100%) !important;
+    box-shadow: 0 4px 15px rgba(44, 95, 159, 0.15);
+    padding: 1rem 0;
+}
+
+/* Make navbar links professional and visible */
+.navbar .nav-link, .navbar .navbar-brand {
+    color: var(--bg-white) !important;
+    opacity: 0.95;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.navbar .nav-link:hover {
+    color: var(--secondary-color) !important;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Cards: clean, elevated surfaces with subtle shadows */
+.card {
+    background: var(--bg-white) !important;
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+/* Property cards: premium showcase */
+.property-card {
+    background: var(--bg-white);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+.property-card:hover {
+    box-shadow: 0 12px 32px rgba(44, 95, 159, 0.2);
+    transform: translateY(-8px);
+}
+.property-card .property-image {
+    height: 280px;
+    background: linear-gradient(135deg, var(--bg-light), var(--border-color));
+    position: relative;
+    overflow: hidden;
+}
+.property-card .property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.property-card:hover .property-image img {
+    transform: scale(1.08);
+}
+.property-card .property-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.property-card .property-body {
+    padding: 1.5rem;
+}
+.property-card .property-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+.property-card .property-location {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+.property-card .property-location i {
+    margin-right: 0.4rem;
+}
+.property-card .property-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.property-card .property-features {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+.property-feature {
+    text-align: center;
+}
+.property-feature-icon {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 0.3rem;
+}
+.property-feature-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Summary/Featured cards: premium highlight sections */
+#summary-cards .summary-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    color: var(--bg-white);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(44, 95, 159, 0.25);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+#summary-cards .summary-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(44, 95, 159, 0.35);
+}
+#summary-cards .summary-icon {
+    opacity: 0.25;
+    color: var(--bg-white);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+#summary-cards .summary-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+#summary-cards .summary-amount {
+    color: var(--bg-white);
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Action buttons: professional styling */
+.quick-action {
+    background: var(--primary-color);
+    color: var(--bg-white);
+    border-radius: 10px;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(44, 95, 159, 0.2);
+}
+.quick-action:hover {
+    background: #1e4573;
+    color: var(--bg-white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(44, 95, 159, 0.3);
+}
+.quick-action.secondary {
+    background: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+}
+.quick-action.secondary:hover {
+    background: #c4954a;
+    box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+}
+
+/* Buttons primary / secondary / success */
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--bg-white);
+    border: none;
+    box-shadow: 0 4px 12px rgba(44, 95, 159, 0.2);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background: #1e4573;
+    color: var(--bg-white);
+    box-shadow: 0 8px 20px rgba(44, 95, 159, 0.3);
+    transform: translateY(-2px);
+}
+.btn-secondary {
+    background: var(--secondary-color);
+    border: none;
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+    background: #c4954a;
+    box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+}
+.btn-success {
+    background: var(--accent-color);
+}
+.btn-success:hover {
+    background: #1e8449;
+}
+
+/* Table headings: professional header styling */
+.table thead th {
+    background: linear-gradient(90deg, var(--primary-color), #1e4573);
+    color: var(--bg-white);
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.table td {
+    color: var(--text-dark);
+    border-color: var(--border-color);
+    vertical-align: middle;
+}
+.table-hover tbody tr:hover {
+    background-color: var(--light-gold);
+}
+
+/* Footer: premium footer styling */
+.footer {
+    background: linear-gradient(90deg, var(--primary-color), #1e4573) !important;
+    color: var(--bg-white) !important;
+    border-top: 3px solid var(--secondary-color);
+    padding: 3rem 0 1.5rem;
+}
+.footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.footer a:hover {
+    color: var(--bg-white);
+    text-decoration: underline;
+}
+.footer-section-title {
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Search and filter components */
+.search-bar {
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+}
+.search-bar:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(44, 95, 159, 0.1);
+    outline: none;
+}
+
+/* Hero section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e4573 100%);
+    color: var(--bg-white);
+    padding: 4rem 2rem;
+    border-radius: 0;
+    text-align: center;
+}
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* Filter tags and badges */
+.filter-tag {
+    background: var(--light-gold);
+    border: 2px solid var(--secondary-color);
+    color: var(--text-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.filter-tag:hover {
+    background: var(--secondary-color);
+    color: var(--bg-white);
+}
+.filter-tag.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+/* Badge styling */
+.badge-primary {
+    background: var(--primary-color);
+}
+.badge-secondary {
+    background: var(--secondary-color);
+}
+.badge-success {
+    background: var(--accent-color);
+}
+
+/* Form controls */
+.form-control, .form-select {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    transition: all 0.3s ease;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(44, 95, 159, 0.1);
+}
+
+/* Contact form styling */
+.contact-form {
+    background: var(--light-gold);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--secondary-color);
+}
+
+/* Testimonial section */
+.testimonial-card {
+    background: var(--bg-white);
+    border-left: 4px solid var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.testimonial-card .stars {
+    color: var(--warning-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .summary-amount { font-size: 1.8rem; }
+    .hero-section h1 { font-size: 2rem; }
+    .property-card .property-image { height: 200px; }
+    .property-price { font-size: 1.4rem; }
+}
+
+/* Utility classes */
+.text-primary { color: var(--primary-color) !important; }
+.text-secondary { color: var(--secondary-color) !important; }
+.text-accent { color: var(--accent-color) !important; }
+.bg-light-gold { background: var(--light-gold) !important; }
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Link styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+a:hover {
+    color: var(--secondary-color);
+}

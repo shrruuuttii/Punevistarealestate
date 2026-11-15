@@ -1,0 +1,195 @@
+@{
+    ViewData["Title"] = "Yeni İşlem Ekle";
+    
+}
+@model AddTransactionViewModel;
+
+<!-- Sayfa Başlığı -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="mb-1">
+                    <i class="fas fa-plus me-2"></i>
+                    Yeni İşlem Ekle
+                </h2>
+                <p class="text-white-50 mb-0">Gelir veya gider işlemi ekleyebilirsiniz</p>
+            </div>
+            <div>
+                <a href="/Dashboard" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Geri Dön
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--İşlem Ekleme Formu -->
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-edit me-2"></i>
+                    İşlem Detayları
+                </h5>
+            </div>
+            
+            <div class="card-body">
+                <form id="addTransactionForm" method="post" asp-action="Add" asp-controller="Transaction">
+                    <!-- İşlem Tipi -->
+                    <div class="mb-4">
+                        <label class="form-label">İşlem Tipi *</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="btn-check" asp-for="TransactionType"
+                                       id="expenseRadio" value=2 checked>
+                                <label class="btn btn-outline-danger w-100 py-3" for="expenseRadio">
+                                    <i class="fas fa-arrow-up fa-lg d-block mb-2"></i>
+                                    <strong>Gider</strong>
+                                    <small class="d-block text-muted">Para çıkışı</small>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="btn-check" asp-for="TransactionType" 
+                                       id="incomeRadio" value=1>
+                                <label class="btn btn-outline-success w-100 py-3" for="incomeRadio">
+                                    <i class="fas fa-arrow-down fa-lg d-block mb-2"></i>
+                                    <strong>Gelir</strong>
+                                    <small class="d-block text-muted">Para girişi</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hızlı Tutar Butonları -->
+                    <div class="mb-4">
+                        <label class="form-label">Hızlı Tutar Seçimi</label>
+                        <div class="row g-2">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-outline-secondary w-100" 
+                                        onclick="setAmount(10)">₺10</button>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-outline-secondary w-100" 
+                                        onclick="setAmount(25)">₺25</button>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-outline-secondary w-100" 
+                                        onclick="setAmount(50)">₺50</button>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-outline-secondary w-100" 
+                                        onclick="setAmount(100)">₺100</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tutar -->
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Tutar *</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">₺</span>
+                            <input type="number" class="form-control" id="amount" asp-for="Amount" 
+                                   placeholder="0.00" step="0.01" required>
+                        </div>
+                        <div class="form-text">Virgülden sonra 2 basamak girebilirsiniz</div>
+                    </div>
+
+                    <!-- Kategori -->
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Kategori *</label>
+                        <select class="form-select form-select-lg" id="category" asp-for="CategoryId" required>
+                            <option value="">Kategori seçin...</option>
+                            <!-- Gider kategorileri -->
+                            <optgroup label="📉 Gider Kategorileri" id="expense-categories">
+                                @foreach(var category in Model.ExpenseCategories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </optgroup>
+                            <!-- Gelir kategorileri -->
+                            <optgroup label="📈 Gelir Kategorileri" id="income-categories" style="display: none;">
+                                @foreach(var category in Model.IncomeCategories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Açıklama -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıklama *</label>
+                        <input type="text" class="form-control" id="description" asp-for="Description" 
+                               placeholder="İşlem açıklaması..." required>
+                        <div class="form-text">İşleminizi tanımlayıcı bir açıklama yazın</div>
+                    </div>
+
+                    <!-- Tarih -->
+                    <div class="mb-4">
+                        <label for="date" class="form-label">Tarih *</label>
+                        <input type="date" class="form-control" id="date" asp-for="TransactionDate" required>
+                    </div>
+
+                    
+
+                    <!-- Form Butonları -->
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <a href="/Dashboard" class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-times me-2"></i>
+                                İptal
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <button type="submit" name="action" value="save" class="btn btn-primary w-100" id="saveButton">
+                                <i class="fas fa-check me-2"></i>
+                                <span class="button-text">Kaydet</span>
+                                <span class="button-spinner d-none">
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                    Kaydediliyor...
+                                </span>
+                            </button>
+                        </div>
+                        </div>
+
+                        <!-- Kaydet ve Yeni Ekle -->
+                        <div class="row mt-2">
+                        <div class="col-12">
+                            <button type="submit" name="action" value="saveAndNew" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-plus me-2"></i>
+                                Kaydet ve Yeni Ekle
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Son İşlemler Önizleme (Küçük Widget) -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-clock me-2"></i>
+                    Son Eklenen İşlemler
+                </h6>
+            </div>
+            <div class="card-body">
+                <div id="recent-transactions-preview">
+                    <div class="text-center py-2">
+                        <div class="spinner-border spinner-border-sm text-primary" role="status">
+                            <span class="visually-hidden">Yükleniyor...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="~/js/transaction-add.js"></script>
+}
